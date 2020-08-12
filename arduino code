@@ -1,0 +1,40 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial sgsm(9,10);//for gsm module
+
+#define device1a 3
+#define device1b 4
+#define device2a 5
+#define device2b 6
+
+ void setup() {
+  sgsm.begin(9600);
+  pinMode(device1a,OUTPUT);
+  pinMode(device1b,OUTPUT);
+  pinMode(device2a,OUTPUT);
+  pinMode(device2b,OUTPUT);
+
+  }
+
+void loop() {
+  if(sgsm.available()>0){
+    String c = sgsm.readString();
+    c.trim();
+    if(c.indexOf("turn-on1")>=0){
+      digitalWrite(device1a,HIGH);
+      digitalWrite(device1b,HIGH);
+      }
+      if(c.indexOf("turn-off1")>=0){
+      digitalWrite(device1a,LOW);
+      digitalWrite(device1b,LOW);
+      }
+      if(c.indexOf("turn-on2")>=0){
+      digitalWrite(device2a,HIGH);
+      digitalWrite(device2b,HIGH);
+      }
+      if(c.indexOf("turn-off2")>=0){
+      digitalWrite(device2a,LOW);
+      digitalWrite(device2b,LOW);
+      }
+  }
+}

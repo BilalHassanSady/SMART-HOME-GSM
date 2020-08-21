@@ -13,6 +13,10 @@ SoftwareSerial sgsm(9,10);//for gsm module
   pinMode(device1b,OUTPUT);
   pinMode(device2a,OUTPUT);
   pinMode(device2b,OUTPUT);
+  SIM900.print("AT+CMGF=1\r");  
+  delay(100);
+  SIM900.print("AT+CNMI=2,2,0,0,0\r"); 
+  delay(100);
 
   }
 
